@@ -1,0 +1,94 @@
+/* --- CORE VARIABLES --- */
+:root {
+    --bg-sidebar: #191919; --bg-main: #202020;
+    --text-main: #e0e0e0; --text-muted: #bfbfbf;
+    --border-color: #2f2f2f; --accent-color: #ff6b6b; 
+}
+body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; margin: 0; overflow-x: hidden; }
+
+/* Colors */
+.text-primary { color: var(--accent-color) !important; }
+.text-success { color: #20c997 !important; } /* Green for Daily */
+
+.btn-primary { background-color: var(--accent-color) !important; border-color: var(--accent-color) !important; color: white !important; font-weight: 600; }
+.btn-primary:hover { background-color: #fa5252 !important; border-color: #fa5252 !important; }
+.text-muted { color: var(--text-muted) !important; }
+.breadcrumb, .small { color: var(--text-muted) !important; }
+
+#landingPage { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #121212; display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.6s ease-out; }
+.landing-content { z-index: 2; color: white; }
+
+/* SIDEBAR */
+.sidebar-card { height: 100vh; background: var(--bg-sidebar); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; padding-top: 15px; }
+.sidebar-header { padding: 0 15px 15px 15px; border-bottom: 1px solid var(--border-color); margin-bottom: 10px; }
+.avatar-circle { width: 22px; height: 22px; background: #37352f; color: #a0a0a0; border-radius: 4px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; }
+
+.section-header { padding: 8px 15px; font-size: 0.7rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; display: flex; justify-content: space-between; }
+.btn-add-page-mini { background: none; border: none; color: var(--text-muted); cursor: pointer; opacity: 0.5; }
+.btn-add-page-mini:hover { opacity: 1; color: white; }
+
+.page-item { padding: 8px 15px 8px 20px; margin: 2px 0; cursor: pointer; font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; justify-content: space-between; transition: all 0.2s; border-left: 3px solid transparent; }
+.page-item:hover { background: #2c2c2c; color: white; }
+.page-item.active { background: #262626; color: white; border-left: 3px solid var(--accent-color); }
+.page-content-wrapper { display: flex; align-items: center; flex-grow: 1; overflow: hidden; }
+.btn-delete-page-sidebar { opacity: 0; background: none; border: none; color: #666; padding: 2px 6px; border-radius: 4px; transition: all 0.2s; }
+.btn-delete-page-sidebar:hover { background: #444; color: #ff5555; }
+.page-item:hover .btn-delete-page-sidebar { opacity: 1; }
+
+.btn-new-section { margin-top: auto; padding: 15px; background: transparent; border: none; border-top: 1px solid var(--border-color); color: var(--text-muted); text-align: left; width: 100%; }
+.btn-new-section:hover { background: #2c2c2c; color: white; }
+
+/* MAIN CONTENT */
+.main-content-area { background: var(--bg-main); height: 100vh; overflow-y: auto; padding: 40px 50px; }
+.page-title { font-weight: 700; color: white; margin-bottom: 5px; }
+
+.table-header { display: grid; grid-template-columns: 2fr 1fr 1fr 40px; padding: 10px 0; border-bottom: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.85rem; font-weight: 500; }
+.task-row { display: grid; grid-template-columns: 2fr 1fr 1fr 40px; padding: 12px 0; border-bottom: 1px solid #2a2a2a; align-items: center; transition: background 0.2s; }
+.task-row:hover { background: #2a2a2a; }
+
+/* Checklist Style */
+.simple-todo-row { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #2a2a2a; transition: background 0.2s; }
+.simple-todo-row:hover { background: #262626; border-radius: 4px; padding-left: 10px; }
+.simple-checkbox { width: 18px; height: 18px; border: 2px solid #555; border-radius: 3px; margin-right: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.simple-checkbox.checked { background: var(--accent-color); border-color: var(--accent-color); }
+.simple-checkbox i { display: none; font-size: 10px; color: white; }
+.simple-checkbox.checked i { display: block; }
+
+.task-name { padding-right: 15px; color: #e0e0e0; cursor: text; flex-grow: 1; }
+.task-name.completed { text-decoration: line-through; color: #555; }
+
+/* Badges */
+.badge-select { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; display: inline-block; user-select: none; }
+.status-todo { background: #3a3a3a; color: #ccc; }
+.status-progress { background: #0d4669; color: #8ecae6; }
+.status-done { background: #1c3829; color: #8effc1; }
+.priority-high { background: #3e1b1b; color: #ff8f8f; }
+.priority-medium { background: #3f2e14; color: #ffeeb0; }
+.priority-low { background: #202020; color: #888; border: 1px solid #444; }
+
+.btn-delete-row { opacity: 0; color: #555; border: none; background: none; transition: all 0.2s; }
+.task-row:hover .btn-delete-row, .simple-todo-row:hover .btn-delete-row { opacity: 1; }
+.btn-delete-row:hover { color: #ff5555; }
+
+.input-bar-container { margin-top: 20px; display: flex; gap: 10px; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); }
+.task-input-main { flex-grow: 1; background: transparent; border: none; color: white; }
+.task-input-main:focus { outline: none; }
+.input-select { background: #2c2c2c; color: white; border: none; border-radius: 4px; padding: 5px 10px; font-size: 0.85rem; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-sidebar); }
+::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    #sidebarCol { position: fixed; top: 0; left: -100%; width: 280px; height: 100%; z-index: 1055; transition: left 0.3s ease; }
+    #sidebarCol.active { left: 0 !important; }
+    #mobileOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1050; display: none; }
+    #mobileOverlay.active { display: block; }
+    .main-content-area { padding: 20px; padding-bottom: 100px; }
+    .table-header { display: none !important; }
+    .task-row { display: flex; flex-wrap: wrap; gap: 10px; padding: 15px 0; }
+    .task-name { width: 100%; font-size: 1.1rem; margin-bottom: 5px; }
+    .btn-delete-row { opacity: 1; margin-left: auto; }
+    .input-bar-container { position: fixed; bottom: 20px; left: 15px; right: 15px; z-index: 1060; background: #2c2c2c; box-shadow: 0 -4px 20px rgba(0,0,0,0.4); }
+}

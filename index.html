@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>My Database</title>
+    <link rel="icon" href="todo.png" type="image/png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="landingPage">
+    <div class="landing-content text-center">
+        <i class="fas fa-database fa-3x text-secondary mb-3"></i>
+        <h1 class="fw-bold text-white mb-3">Workspace DB</h1>
+        <p class="text-muted mb-4">"Your second brain, perfectly organized."</p>
+        <button class="btn btn-outline-light rounded-pill px-4 py-2" onclick="enterWorkspace()">Enter Workspace</button>
+    </div>
+</div>
+
+<div id="appContainer" class="container-fluid" style="display: none;">
+    
+    <div id="mobileOverlay" onclick="toggleSidebar()"></div>
+
+    <div class="row">
+        
+        <div id="sidebarCol" class="col-md-3 col-lg-2 p-0 transition-width">
+            <div class="sidebar-card">
+                
+                <div class="sidebar-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div class="avatar-circle me-2">DB</div>
+                        <span class="fw-bold text-white small">My Workspace</span>
+                    </div>
+                    <button class="btn btn-sm text-muted d-md-none" onclick="toggleSidebar()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="px-2 mb-3">
+                    <div id="inboxTab" class="page-item" onclick="switchToInbox()">
+                        <div class="page-content-wrapper">
+                            <i class="fas fa-inbox me-2 text-primary"></i> 
+                            <span class="fw-bold">Inbox</span>
+                        </div>
+                        <span id="inboxCount" class="badge bg-dark text-secondary rounded-pill" style="font-size: 0.7rem;">0</span>
+                    </div>
+                    
+                    <div id="dailyTab" class="page-item" onclick="switchToDaily()">
+                        <div class="page-content-wrapper">
+                            <i class="far fa-calendar-alt me-2 text-success"></i> 
+                            <span class="fw-bold">Daily Journal</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr class="sidebar-divider mx-3 border-secondary">
+
+                <div id="sidebarContent" class="px-2 flex-grow-1" style="overflow-y: auto;"></div>
+                
+                <button class="btn-new-section" onclick="createSection()">
+                    <i class="fas fa-plus me-2"></i> New Section
+                </button>
+            </div>
+        </div>
+
+        <div id="mainCol" class="col-md-9 col-lg-10 p-0 transition-width">
+            <div class="main-content-area">
+                
+                <div id="hamburgerBtn" class="mb-3 d-md-none">
+                    <button class="btn btn-text text-muted p-0" onclick="toggleSidebar()">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+
+                <div class="mb-3 text-muted small">
+                    <i class="fas fa-home me-1"></i> / <span id="folderNameDisplay">...</span> / <span id="pageTitleBread">...</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-end mb-4">
+                    <div>
+                        <h1 id="pageTitleDisplay" class="page-title mb-1">Loading...</h1>
+                        <p id="pageDescDisplay" class="text-muted small m-0">Manage your tasks.</p>
+                    </div>
+                    
+                    <div id="datePickerContainer" style="display: none;">
+                        <input type="date" id="journalDatePicker" class="form-control bg-dark text-light border-secondary" onchange="changeJournalDate()">
+                    </div>
+
+                    <div class="dropdown" id="pageOptionsDropdown" style="display: none;">
+                        <button class="btn btn-sm text-muted" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></button>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow">
+                            <li><a class="dropdown-item text-danger" href="#" onclick="deleteCurrentPage()">Delete Page</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="tableHeaderRow" class="table-header">
+                    <div><i class="fas fa-font me-2 text-muted"></i>Task name</div>
+                    <div><i class="fas fa-spinner me-2 text-muted"></i>Status</div>
+                    <div><i class="fas fa-flag me-2 text-muted"></i>Priority</div>
+                    <div></div>
+                </div>
+
+                <div id="taskList"></div>
+                
+                <div id="emptyState" class="mt-4 text-muted small" style="display:none;">
+                    <i class="fas fa-plus me-2"></i> No entries found. Add one below.
+                </div>
+
+                <div class="input-bar-container mt-3">
+                    <input type="text" id="taskInput" class="task-input-main" placeholder="New task...">
+                    <select id="priorityInput" class="input-select">
+                        <option value="Low">Low</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                    <button class="btn btn-primary btn-sm" onclick="addTask()">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
